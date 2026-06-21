@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>天博体育 · 信息索引与资料手记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #faf8f5;
+            color: #2d2a28;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- 深色头图 (hero) ---------- */
+        .hero {
+            background: linear-gradient(145deg, #0e151a 0%, #192b30 100%);
+            color: #e7e2d9;
+            padding: 4.5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: -20%;
+            top: -30%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle at 30% 40%, rgba(190, 150, 100, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-tagline {
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+            margin-bottom: 0.8rem;
+            color: #b6ab98;
+            font-weight: 350;
+        }
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #f0ede5;
+        }
+        .hero-title span {
+            color: #d6bc8c;
+        }
+        .hero-desc {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0.75rem auto 0;
+            color: #cdc3b0;
+            border-left: 3px solid #7b6b4f;
+            padding-left: 1.2rem;
+            text-align: left;
+        }
+
+        /* ---------- 正文浅色区 ---------- */
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 4rem;
+        }
+
+        .section-intro {
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #e3ddd2;
+            padding-bottom: 1.8rem;
+        }
+        .section-intro p {
+            font-size: 1.04rem;
+            color: #3d3833;
+        }
+        .section-intro p + p {
+            margin-top: 1rem;
+        }
+
+        .section-features {
+            margin: 2.8rem 0 3rem;
+        }
+        .section-features h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            color: #1f2b2b;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+        .section-features h2 small {
+            font-size: 0.95rem;
+            font-weight: 350;
+            color: #756e62;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.6rem;
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.5rem 1.4rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.15s ease;
+            border: 1px solid #ede8df;
+        }
+        .feature-card:hover {
+            box-shadow: 0 8px 24px rgba(60, 50, 30, 0.06);
+            border-color: #cfc3ac;
+        }
+        .feature-card .emoji-marker {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 1.3rem;
+            line-height: 1;
+            opacity: 0.8;
+        }
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 520;
+            color: #2d3a38;
+            margin-bottom: 0.5rem;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #4f4941;
+        }
+
+        .section-scene {
+            background: #f2efe8;
+            border-radius: 28px;
+            padding: 2.2rem 2rem;
+            margin: 3rem 0 2.5rem;
+        }
+        .section-scene h2 {
+            font-size: 1.5rem;
+            font-weight: 440;
+            color: #212c29;
+            margin-bottom: 1rem;
+        }
+        .section-scene p {
+            margin-bottom: 0.8rem;
+        }
+        .scene-tip {
+            background: #e7e0d3;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #2c3e37;
+        }
+
+        .faq-mini {
+            margin-top: 3.4rem;
+            border-top: 1px solid #ddd6c9;
+            padding-top: 2rem;
+        }
+        .faq-mini h2 {
+            font-size: 1.3rem;
+            font-weight: 450;
+            color: #2f3733;
+        }
+        .faq-item {
+            margin: 1.2rem 0 0.5rem;
+        }
+        .faq-item dt {
+            font-weight: 520;
+            color: #3f3a32;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item dd {
+            color: #5f574c;
+            font-size: 0.96rem;
+            margin-left: 0;
+            padding-left: 0.2rem;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #a77a4b;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 1px dotted transparent;
+            transition: border 0.2s, color 0.15s;
+        }
+        a:hover {
+            color: #7e5e38;
+            border-bottom: 1px dotted #b58d5f;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            font-size: 0.88rem;
+            color: #8c8376;
+            border-top: 1px solid #e1d9cd;
+            padding-top: 1.8rem;
+            text-align: center;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 1.9rem;
+            }
+            .hero-desc {
+                font-size: 0.95rem;
+                padding-left: 0.9rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .section-scene {
+                padding: 1.8rem 1.2rem;
+            }
+            .container {
+                padding: 2rem 1rem 3rem;
+            }
+        }
+        @media (max-width: 420px) {
+            .hero {
+                padding: 3rem 1rem 2.8rem;
+            }
+            .hero-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero" role="banner">
+        <div class="hero-inner">
+            <div class="hero-tagline">📋 资料整理 · 信息索引</div>
+            <h1 class="hero-title">在数字资料中，找到<span> 天博体育 </span></h1>
+            <div class="hero-desc">
+                一份温和的索引笔记，从信息碎片到清晰脉络。
+            </div>
+        </div>
+    </header>
+
+    <!-- 正文浅色区 -->
+    <main class="container">
+
+        <!-- 承接段落 -->
+        <section class="section-intro">
+            <p>
+                打开浏览器书签，翻过几页存档，总会遇到一些值得留意的体育资讯源。最近在整理运动类内容集合时，又把目光落到了「<a href="https://portal-cn-tianbo.com">天博体育</a>」这个站点上。它不像社交平台那样喧哗，更像一个安静的归档室——比分、赛程、队伍变动，都按自己的节奏更新。
+            </p>
+            <p>
+                有时候我们需要的不只是实时推送，而是一个能慢慢回溯、横向比较的地方。从这一点看，这个站点提供的结构感，反而让人更愿意多停留几分钟。
+            </p>
+        </section>
+
+        <!-- 特点列表（卡片） -->
+        <section class="section-features">
+            <h2>
+                📌 资料维度
+                <small>· 整理自日常浏览笔记</small>
+            </h2>
+            <div class="feature-grid">
+
+                <div class="feature-card">
+                    <span class="emoji-marker">🏷️</span>
+                    <h3>分类标签干净</h3>
+                    <p>热门联赛与杯赛各自成列，没有多余广告穿插。想对比几支球队的近期数据，不必反复跳转页面。</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="emoji-marker">📅</span>
+                    <h3>赛历与回看</h3>
+                    <p>既能看到未来一周的赛程预告，也能往前翻查已结束场次的基本统计。对于写复盘笔记的人来说，很顺手。</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="emoji-marker">🧩</span>
+                    <h3>信息密度适中</h3>
+                    <p>每场比赛附有基础数据，但不会一下子铺满。屏幕阅读时，视线有落脚点，不会觉得累。</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="emoji-marker">🔗</span>
+                    <h3>链接稳定</h3>
+                    <p>多次收藏与重访，主要的目录结构和内容入口几乎没有变动，适合长期归档。</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 场景描述 + 温和提示 -->
+        <section class="section-scene">
+            <h2>🌿 一个日常使用场景</h2>
+            <p>
+                周六下午，想查查上个月某支球队的三场客场数据。打开 <a href="https://portal-cn-tianbo.com">天博体育</a>，从“近期赛事”里按日期筛选，很快找到了那几场。没有弹窗干扰，也不用先登录。把比分和控球率随手记进本地文档，前后不到十分钟。
+            </p>
+            <p>
+                后来我又用它补了几条联赛积分变化的笔记。这类轻量的资料查询，确实不需要太重的工具。
+            </p>
+            <div class="scene-tip">
+                ⏳ 小提示：如果习惯周末集中整理，可以提前把常用页面添加到书签文件夹。
+            </div>
+        </section>
+
+        <!-- FAQ 摘要（简短） -->
+        <section class="faq-mini">
+            <h2>❓ 常见念头 · 简短梳理</h2>
+            <dl class="faq-item">
+                <dt>这个网站适合每天刷吗？</dt>
+                <dd>看习惯。如果你想保持对赛程和基础数据的了解，每周登录两三次就够了；如果只是偶尔需要查历史对阵，把它当作资料库更轻松。</dd>
+            </dl>
+            <dl class="faq-item">
+                <dt>移动端浏览体验如何？</dt>
+                <dd>页面结构在手机浏览器上会自动适配，字大小适中，横竖屏切换后信息排列不乱。我通常竖屏使用，触控响应正常。</dd>
+            </dl>
+            <dl class="faq-item">
+                <dt>和其它体育类站点相比，有什么差异？</dt>
+                <dd>更侧重信息陈列而非社交互动。没有用户评论区，也没有自动播放的视频流。适合需要安静查阅资料的人。</dd>
+            </dl>
+        </section>
+
+        <!-- 温和结尾 -->
+        <div class="footer-note">
+            <p>
+                整理笔记时，偶尔会点开 <a href="https://portal-cn-tianbo.com">天博体育</a> 核对几个数字。
+                它不喧哗，但有用。希望这份简单的索引手记，也能给你一点参考。
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.82rem; color: #a69b8b;">
+                — 资料归档 · 日常记录 —
+            </p>
+        </div>
+
+    </main>
+
+</body>
+</html>
