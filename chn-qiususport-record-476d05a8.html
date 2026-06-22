@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>球速体育 — 赛事资讯与运动数据参考</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f6f9fc;
+            color: #1a2c3e;
+            line-height: 1.6;
+            padding: 0 1.25rem 3rem;
+        }
+
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航 */
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0 0.75rem;
+            border-bottom: 2px solid #bcd9e6;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 0.3px;
+            color: #0f5c6b;
+            background: #e0f0f5;
+            padding: 0.2rem 1rem 0.3rem;
+            border-radius: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            flex-wrap: wrap;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d4f5e;
+            font-weight: 500;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #1f9a8a;
+        }
+
+        /* 核心 hero */
+        .hero {
+            background: linear-gradient(145deg, #e4f2f7 0%, #cde4ed 100%);
+            padding: 2.8rem 2.2rem;
+            border-radius: 48px 16px 48px 16px;
+            margin-bottom: 2.8rem;
+            box-shadow: 0 8px 18px rgba(12, 75, 90, 0.06);
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            color: #0f495a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 720px;
+            color: #1d4d5b;
+        }
+
+        .hero em {
+            font-style: normal;
+            background: #c1e4df;
+            padding: 0.1rem 0.6rem;
+            border-radius: 20px;
+            color: #05404b;
+        }
+
+        /* 三个场景网格卡片 */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .scene-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem 2rem;
+            box-shadow: 0 6px 14px rgba(0, 40, 50, 0.04);
+            border: 1px solid #d1e7ef;
+            transition: transform 0.1s ease, box-shadow 0.2s;
+        }
+
+        .scene-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(20, 100, 110, 0.08);
+            border-color: #9ccfd8;
+        }
+
+        .scene-card h3 {
+            font-size: 1.25rem;
+            color: #115e6b;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scene-card h3 span {
+            display: inline-block;
+            background: #3da38f;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 40%;
+            font-size: 1rem;
+            text-align: center;
+            line-height: 28px;
+        }
+
+        .scene-card p {
+            color: #2f4f5c;
+            font-size: 0.95rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .scene-card .tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            background: #e5f3f0;
+            color: #0a5d5d;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+        }
+
+        /* 常见说明 / 延伸阅读区 */
+        .faq-summary {
+            background: white;
+            border-radius: 40px 8px 40px 8px;
+            padding: 2.2rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid #cde0e9;
+            box-shadow: 0 4px 12px rgba(0, 20, 30, 0.02);
+        }
+
+        .faq-summary h2 {
+            font-size: 1.5rem;
+            color: #0e4d5c;
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px dashed #b2d1db;
+        }
+
+        .faq-item {
+            margin-bottom: 1.3rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1d5b66;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-item p, .faq-item .text {
+            color: #2b4a57;
+            font-size: 0.98rem;
+        }
+
+        .inline-link {
+            color: #007d6e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #64b5aa;
+            transition: border 0.2s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 2px solid #006b5e;
+            color: #025546;
+        }
+
+        /* 底部小提示 */
+        .bottom-note {
+            padding: 1rem 1.2rem;
+            background: #e0f0f2;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #1b4e57;
+            border-left: 4px solid #2f9688;
+            margin-top: 2rem;
+            display: inline-block;
+        }
+
+        /* 响应式 */
+        @media (max-width: 820px) {
+            .scene-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.2rem;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.6rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 1.8rem 1.2rem;
+                border-radius: 28px 8px 28px 8px;
+            }
+
+            .faq-summary {
+                padding: 1.6rem 1.2rem;
+            }
+
+            body {
+                padding: 0 0.9rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 导航区 -->
+    <nav class="navbar">
+        <div class="logo">球速·参考</div>
+        <div class="nav-links">
+            <a href="#">运动索引</a>
+            <a href="#">数据简报</a>
+            <a href="#">项目对照</a>
+        </div>
+    </nav>
+
+    <!-- hero / 核心介绍 -->
+    <div class="hero">
+        <h1>比赛之外，阅读与对照</h1>
+        <p>
+            无论是赛前阵容分析还是赛后技术统计，<a href="https://chn-qiususport.com" class="inline-link">球速体育</a>
+            提供的赛事数据与运动知识，都可以成为爱好者日常查询、横向对比的实用工具。
+            从联赛走势到运动员基础参数，这里更像一座<em>轻量运动资料馆</em>，随时供你翻阅。
+        </p>
+    </div>
+
+    <!-- 三个场景模块（日常查询·对照·延伸阅读） -->
+    <div class="scene-grid">
+        <div class="scene-card">
+            <h3><span>📋</span> 日常查询</h3>
+            <p>快速检索球队近期战绩、交锋记录以及核心球员出场时间。页面结构清晰，不需要反复跳转。</p>
+            <p class="tag">赛事日历 · 阵容名单</p>
+        </div>
+        <div class="scene-card">
+            <h3><span>⚖</span> 数据对照</h3>
+            <p>把不同联赛、不同赛季的场均数据并排展示，辅助判断趋势。适合做简单笔记或观赛前准备。</p>
+            <p class="tag">命中率 · 助攻失误比</p>
+        </div>
+        <div class="scene-card">
+            <h3><span>📖</span> 延伸阅读</h3>
+            <p>每项运动都有背景解读——规则演变、著名战术、历史纪录。既有科普性又不堆砌术语。</p>
+            <p class="tag">战术图解 · 冷知识</p>
+        </div>
+    </div>
+
+    <!-- 常见说明 + FAQ 摘要 -->
+    <div class="faq-summary">
+        <h2>常见说明与延伸角度</h2>
+
+        <div class="faq-item">
+            <strong>❓ 数据更新频率？</strong>
+            <p>主要赛事数据在每个比赛日结束后次日上午更新，杯赛与次级联赛通常在 24 小时内补充。部分历史数据为固定参考值。</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>🔎 对照维度是否可自定义？</strong>
+            <p>目前支持按赛季、联赛和基础指标筛选，方便横向比较。如果关注特定球员，可以在搜索栏输入姓名（部分仅支持英文或拼音）。</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>🧩 延伸阅读与赛事有无关联？</strong>
+            <p>每篇延伸内容都标注了相关赛事或运动项目，例如“英超战术演变”会配合对应赛季的阵型统计图。你可以从任意一篇文章链接到对应数据页。</p>
+        </div>
+
+        <div style="margin-top: 1.2rem; font-style: normal; background: #f0f7fa; padding: 0.7rem 1.2rem; border-radius: 50px;">
+            ⚡ 如果你在查找特定运动项目的赛季趋势，不妨试试直接访问
+            <a href="https://chn-qiususport.com" class="inline-link">球速体育</a>
+            ，在搜索或分类目录中快速定位。
+        </div>
+    </div>
+
+    <!-- 底部小提示 (知识型收尾) -->
+    <div class="bottom-note">
+        💡 提示：对照数据时建议关注样本量（如出场次数），避免因场次过少产生偏差。延伸阅读板块每月更新 2~3 篇。
+    </div>
+</div>
+</body>
+</html>
